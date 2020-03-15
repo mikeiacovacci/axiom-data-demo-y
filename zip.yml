@@ -1,0 +1,15 @@
+---
+name: zip
+description: Packages and compresses archive files
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Create ZIP Archive":
+    - type: ["bash","standalone"]
+    - text: "zip -r {FILE} {STR}"
+    - input: ["output ZIP archive file","input file"]
+    - output: ["STDOUT",{"FILE":{"input":1}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

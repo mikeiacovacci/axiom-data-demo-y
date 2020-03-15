@@ -1,0 +1,15 @@
+---
+name: fdisk
+description: Manipulates disk partition tables
+os: Linux
+ptf_module: null
+---
+commands:
+  - "List Connected Drives":
+    - type: ["bash","standalone"]
+    - text: "fdisk -l"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

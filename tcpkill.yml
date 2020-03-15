@@ -1,0 +1,15 @@
+---
+name: tcpkill
+description: Kills TCP connections on a LAN
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Block a TCP Connection":
+    - type: ["bash","standalone"]
+    - text: "tcpkill host {IPV4} and port {INT}"
+    - input: ["target IPv4 address","target TCP port number"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

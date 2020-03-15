@@ -1,0 +1,29 @@
+---
+name: dig
+description: DNS lookup utility
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Domain Lookup for IP":
+    - type: ["bash","standalone"]
+    - text: "dig -x {IPV4}"
+    - input: ["target IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "DNS Zone Transfer":
+    - type: ["bash","standalone"]
+    - text: "dig @{IPV4} {DOMAIN} -t AXFR"
+    - input: ["name server IPv4 address","target domain"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "DNS Reverse Lookup (Class C)":
+    - type: ["bash","autonomous"]
+    - text: "for ip in {1..254..1}; do dig -x {INT}.{INT}.{INT}.$ip | grep $ip >> {FILE}; done;"
+    - input: ["IPv4, 1st octet","IPv4, 2nd octet","IPv4, 3rd octet","output file"]
+    - output: ["STDOUT",{"FILE":{"input":4}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

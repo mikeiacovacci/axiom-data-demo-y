@@ -1,0 +1,22 @@
+---
+name: sc
+description: Communicates with the Windows Service Control Manager and Windows services
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Show Services":
+    - type: ["cmd","standalone"]
+    - text: "sc query state=all"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Create a Remote Service":
+    - type: ["cmd","standalone"]
+    - text: "sc \\\\{IPV4} create {STR} binpath={FULLPATH} start= auto"
+    - input: ["target IPv4 address","new service name","full path to .exe file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

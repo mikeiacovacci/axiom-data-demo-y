@@ -1,0 +1,57 @@
+---
+name: reg
+description: Performs operations on registry subkey information and values in registry entries
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Query Remote Registry":
+    - type: ["cmd","standalone"]
+    - text: "reg query \\\\{IPV4}\\{STR}\\{STR} /v {STR} "
+    - input: ["target IPv4 address","domain","registry key name","value"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Search Registry for Password":
+    - type: ["cmd","standalone"]
+    - text: "reg query HKLM /f password /t REG_SZ /s"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Save Security Hive to File":
+    - type: ["cmd","standalone"]
+    - text: "reg save HKLM\\Security {FILE}"
+    - input: null
+    - output: ["STDOUT",{"FILE":{"input":1}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Add Registry Key Remotely":
+    - type: ["cmd","standalone"]
+    - text: "reg add \\\\{IPV4}\\{STR}\\{STR}"
+    - input: ["target IPv4 address","registry key name","value"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Re-enable Command Prompt":
+    - type: ["cmd","standalone"]
+    - text: "reg add HKCU\\Software\\Policies\\Microsoft\\Windows\\System /v DisableCMD /t REG_DWORD /d 0 /f"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Start RDP":
+    - type: ["cmd","standalone"]
+    - text: "reg add \"HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Terminal Server\" /v fDenyTSConnections /t REG_DWORD /d 0 /f"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Tunnel RDP Out Port 443 (may need to restart terminal services)":
+    - type: ["cmd","standalone"]
+    - text: "reg add \"HKLM\\System\\CurrentControlSet\\Control\\Terminal Server\\WinStations\\RDP-Tcp\" /v PortNumber /t REG_DWORD /d 443 /f"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

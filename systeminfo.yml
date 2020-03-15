@@ -1,0 +1,15 @@
+---
+name: systeminfo
+description: Displays OS configuration information for a local or remote machine, including service pack levels
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Remote System Info":
+    - type: ["cmd","standalone"]
+    - text: "systeminfo /S {IPV4} /U {STR}\\{STR} /P {STR}"
+    - input: ["target IPv4 address","domain","target username","target user's password"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

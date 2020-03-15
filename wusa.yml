@@ -1,0 +1,15 @@
+---
+name: wusa
+description: Installs update packages via the Windows Update Agent API
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Uninstall Patch":
+    - type: ["cmd","standalone"]
+    - text: "wusa.exe /uninstall /kb:{INT}"
+    - input: ["KB number"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

@@ -1,0 +1,15 @@
+---
+name: ps
+description: Reports a snapshot of the current processes
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Process Listing (top)":
+    - type: ["bash","standalone"]
+    - text: "ps -ef"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

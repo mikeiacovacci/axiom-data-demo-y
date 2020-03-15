@@ -1,0 +1,15 @@
+---
+name: rdesktop
+description: Remote Desktop Protocol client
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Remote Desktop to IP":
+    - type: ["bash","standalone"]
+    - text: "rdesktop {IPV4}"
+    - input: ["target IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

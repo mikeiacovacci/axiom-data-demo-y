@@ -1,0 +1,134 @@
+---
+name: net
+description: Manage network resources and perform operations on groups, users, account policies, shares, etc.
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Show Hosts in Current Domain":
+    - type: ["cmd","standalone"]
+    - text: "net view /domain"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Show Hosts in Specified Domain":
+    - type: ["cmd","standalone"]
+    - text: "net view /domain:{STR}"
+    - input: ["domain name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Show All Users in Current Domain":
+    - type: ["cmd","standalone"]
+    - text: "net user /domain"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Add User":
+    - type: ["cmd","standalone"]
+    - text: "net user {STR} {STR} /add"
+    - input: ["new user's name","new user's password"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Add User to Administrators":
+    - type: ["cmd","standalone"]
+    - text: "net localgroup \"Administrators\" {STR} /add"
+    - input: ["target user"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Show Domain Password Policy":
+    - type: ["cmd","standalone"]
+    - text: "net accounts /domain"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List Local Admins":
+    - type: ["cmd","standalone"]
+    - text: "net localgroup \"Administators\""
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Get Domain Groups":
+    - type: ["cmd","standalone"]
+    - text: "net group /{STR}"
+    - input: ["Active Directory domain name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List Users in Domain Admins":
+    - type: ["cmd","standalone"]
+    - text: "net group \"Domain Admins\" /domain"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List DCs for Current Domain":
+    - type: ["cmd","standalone"]
+    - text: "net group \"Domain Controllers\" /domain"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Show Current SMB Shares":
+    - type: ["cmd","standalone"]
+    - text: "net share"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Show Active SMB Sessions":
+    - type: ["cmd","autonomous"]
+    - text: "net session | find / \"\\\\\""
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Unlock Domain User Account":
+    - type: ["cmd","standalone"]
+    - text: "net user {STR} /ACTIVE:yes /domain"
+    - input: ["target username"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Change Domain User Password":
+    - type: ["cmd","standalone"]
+    - text: "net user {STR} \"{STR}\" /domain"
+    - input: ["target username","new password"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Share a Folder":
+    - type: ["cmd","standalone"]
+    - text: "net share {STR} {FULLPATH} /GRANT:Everyone,FULL"
+    - input: ["share name","full folder path"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Show a Remote Computer's Shares":
+    - type: ["cmd","standalone"]
+    - text: "net share \\\\{IPV4}"
+    - input: ["target IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Connect to Remote Computer's Filesystem ($IPC)":
+    - type: ["cmd","standalone"]
+    - text: "net use \\\\{IPV4}"
+    - input: ["target IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Map a Drive (using specified credentials)":
+    - type: ["cmd","standalone"]
+    - text: "net use z: \\\\{IPV4}\\{STR} {STR} /user:{STR}\\{STR}"
+    - input: ["target IPv4 address","share name","password","domain","user"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

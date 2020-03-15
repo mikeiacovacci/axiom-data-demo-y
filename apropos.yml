@@ -1,0 +1,15 @@
+---
+name: apropos
+description: Searches the manual page names and descriptions
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Find Related Command":
+    - type: ["bash","standalone"]
+    - text: "apropos {STR}"
+    - input: ["subject search term"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

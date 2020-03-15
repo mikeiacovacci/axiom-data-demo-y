@@ -1,0 +1,15 @@
+---
+name: uname
+description: Prints Linux system information
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Show Kernel Version and CPU Info":
+    - type: ["bash","standalone"]
+    - text: "uname -a"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

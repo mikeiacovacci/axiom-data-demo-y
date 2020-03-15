@@ -1,0 +1,85 @@
+---
+name: netsh
+description: Display or modify the network configuration of a local or remote Windows computer
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Show Saved Wireless Profiles":
+    - type: ["cmd","standalone"]
+    - text: "netsh wlan show profiles"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Disable Firewall (old)":
+    - type: ["cmd","standalone"]
+    - text: "netsh firewall set opmode disable"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Export WiFi Plaintext Password":
+    - type: ["cmd","standalone"]
+    - text: "netsh wlan export profile folder=. key=clear"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List Interface IDs/MTUs":
+    - type: ["cmd","standalone"]
+    - text: "netsh interface ip show interfaces"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Set IP":
+    - type: ["cmd","standalone"]
+    - text: "netsh interface ip set address local static {IPV4} {STR} {IPV4} {STR}"
+    - input: ["new IPv4 address","netmask","gateway address","ID"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Set DNS Server":
+    - type: ["cmd","standalone"]
+    - text: "netsh interface ip set dns local static {IPV4}"
+    - input: ["DNS server IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Set Interface to use DHCP":
+    - type: ["cmd","standalone"]
+    - text: "netsh interface ip set address local dhcp"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Disable Windows Firewall (currentprofile)":
+    - type: ["cmd","standalone"]
+    - text: "netsh advfirewall set currentprofile state off"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Disable Windows Firewall (allprofiles)":
+    - type: ["cmd","standalone"]
+    - text: "netsh advfirewall set allprofiles state off"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Native Windows Port Forward (must be admin)":
+    - type: ["cmd","standalone"]
+    - text: "netsh interface portproxy add v4tov4 listenport={INT} listenaddress={IPV4} connectport={INT} connectaddress={IPV4}"
+    - input: ["listen port","listen IPv4 address","connect port","connect IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Remove Native Windows Port Forward (must be admin)":
+    - type: ["cmd","standalone"]
+    - text: "netsh interface portproxy delete v4tov4 listenport={INT} listenaddress={IPV4}"
+    - input: ["listen port","listen IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

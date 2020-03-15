@@ -1,0 +1,15 @@
+---
+name: dos2unix
+description: DOS/Mac to Unix and vice versa text file format converter
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Convert File to *nix Format":
+    - type: ["bash","standalone"]
+    - text: "dos2unix {FILE}"
+    - input: ["input file to convert"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

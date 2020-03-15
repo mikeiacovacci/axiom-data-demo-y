@@ -1,0 +1,22 @@
+---
+name: find
+description: Searches for files in a directory hierarchy
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Find PDF Files":
+    - type: ["bash","standalone"]
+    - text: "find . -type f -iname '*.pdf'"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Search for setuid Files":
+    - type: ["bash","standalone"]
+    - text: "find / -perm -4000 -o -perm -2000 -exec ls -ldb {} \\;"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

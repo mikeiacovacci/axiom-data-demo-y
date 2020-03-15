@@ -1,0 +1,15 @@
+---
+name: route
+description: Show and manipulate the IP routing table
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Set Gateway":
+    - type: ["bash","standalone"]
+    - text: "route add default gw {IPV4}"
+    - input: ["default gateway IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

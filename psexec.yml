@@ -1,0 +1,29 @@
+---
+name: PsExec
+description: Sysinternals tool to execute programs on a remote Windows system
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Execute File Hosted on Remote System with Specified Credentials":
+    - type: ["cmd","standalone"]
+    - text: "psexec /accepteula \\\\{IPV4} -u {STR}\\{STR} -p {STR} -c -f \\\\{IPV4}\\{STR}\\{FILE}"
+    - input: ["target IPv4 address","domain","target user","password","SMB IPv4 address","share name","executable file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Run Remote Command with Specified Hash":
+    - type: ["cmd","standalone"]
+    - text: "psexec /accepteula \\\\{IPV4} -u {STR}\\{STR} -p {STR}:{STR} cmd.exe /c {STR}"
+    - input: ["target IPv4 address","domain","user","LM hash","NT hash","command"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Run Remote Command as SYSTEM":
+    - type: ["cmd","standalone"]
+    - text: "psexec /accepteula \\\\{IPV4} -s {STR}"
+    - input: ["target IPv4 address","command"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

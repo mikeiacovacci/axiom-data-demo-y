@@ -1,0 +1,36 @@
+---
+name: dnsrecon
+description: A DNS enumeration tool by Carlos Parez
+os: Linux
+ptf_module: modules/intelligence-gathering/dnsrecon
+---
+commands:
+  - "Reverse Lookup for IP Range":
+    - type: ["bash","standalone"]
+    - text: "dnsrecon -t rvs -i {IPV4},{IPV4}"
+    - input: ["starting target IPv4 address","ending target IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Retrieve Standard DNS Records":
+    - type: ["bash","standalone"]
+    - text: "dnsrecon -t std -d {DOMAIN}"
+    - input: ["target domain"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Enumerate Subdomains":
+    - type: ["bash","standalone"]
+    - text: "dnsrecon -t brt -d {DOMAIN} -w {FILE}"
+    - input: ["target domain","input target hosts list file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "DNS Zone Transfers":
+    - type: ["bash","standalone"]
+    - text: "dnsrecon -d {DOMAIN} -t axfr"
+    - input: ["target domain"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

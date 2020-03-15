@@ -1,0 +1,22 @@
+---
+name: rpm
+description: Package manager that can build, install, query, verify, update, and erase software packages
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Show Installed Packages (Redhat)":
+    - type: ["bash","standalone"]
+    - text: "rpm --query -all"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Install RPM Package":
+    - type: ["bash","standalone"]
+    - text: "rpm -ivh {FILE}"
+    - input: ["RPM input file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

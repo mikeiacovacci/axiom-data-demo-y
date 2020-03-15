@@ -1,0 +1,22 @@
+---
+name: mount
+description: Mounts a filesystem
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Show Mounted File Systems":
+    - type: ["bash","standalone"]
+    - text: "mount"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Mount USB Key":
+    - type: ["bash","standalone"]
+    - text: "mount {STR} {STR}"
+    - input: ["device path","mount path"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

@@ -1,0 +1,22 @@
+---
+name: rfkill
+description: Enables and disables wireless devices
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Identify WiFi Problems":
+    - type: ["bash","standalone"]
+    - text: "rfkill list"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Turn on WiFi":
+    - type: ["bash","standalone"]
+    - text: "rfkill unblock all"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

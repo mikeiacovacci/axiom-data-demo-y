@@ -1,0 +1,15 @@
+---
+name: rundll32
+description: Loads and runs 32-bit dynamic-link libraries (DLLs)
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Lock Workstation":
+    - type: ["cmd","standalone"]
+    - text: "rundll32 user32.dll,LockWorkStation"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

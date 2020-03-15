@@ -1,0 +1,36 @@
+---
+name: tasklist
+description: Displays a list of currently running processes on either a local or remote machine
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Show Processes & Services":
+    - type: ["cmd","standalone"]
+    - text: "tasklist /svc"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Show All Processes & DLLs":
+    - type: ["cmd","standalone"]
+    - text: "tasklist /m"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Remote Process Listing":
+    - type: ["cmd","standalone"]
+    - text: "tasklist /S {IPV4} /v"
+    - input: ["target IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Force Process to Terminate":
+    - type: ["cmd","standalone"]
+    - text: "tasklist /PID {INT} /F"
+    - input: ["target PID"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

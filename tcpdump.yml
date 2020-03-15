@@ -1,0 +1,64 @@
+---
+name: tcpdump
+description: Dumps traffic on a network
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Capture Packets in ASCII and HEX (write to file)":
+    - type: ["bash","standalone"]
+    - text: "tcpdump -i {STR} -XX -w {STR}.pcap"
+    - input: ["interface name","output PCAP file prefix"]
+    - output: ["STDOUT",{"FILE":{"prefix":[2,".pcap"]}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Capture HTTP Traffic to Target Address":
+    - type: ["bash","standalone"]
+    - text: "tcpdump -i {STR} port 80 dst {IPV4}"
+    - input: ["interface name","target IPv4 Address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Show Connections to a Specific IP":
+    - type: ["bash","standalone"]
+    - text: "tcpdump -i {STR} -tttt dst {IPV4} and not net {IPV4CIDR}"
+    - input: ["interface name","target IPv4 address","target address's network range, CIDR notation"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Print All Ping Responses":
+    - type: ["bash","standalone"]
+    - text: "tcpdump -i {STR} 'icmp[icmptype] == icmp-echoreply'"
+    - input: ["interface name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Capture DNS Packets and Print Timestamp":
+    - type: ["bash","standalone"]
+    - text: "tcpdump -i {STR} -c {INT} -tttt 'udp and port 53'"
+    - input: ["interface name","number of packets to capture"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Capture TCP Traffic on Specified Port Range":
+    - type: ["bash","standalone"]
+    - text: "tcpdump -nvvX -s0 -i {STR} tcp portrange {INTRANGE}"
+    - input: ["interface name","TCP port range"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Capture Traffic to IP Excluding Specified Subnet":
+    - type: ["bash","standalone"]
+    - text: "tcpdump -I {STR} -tttt dst {IPV4} and not net {IPV4CIDR}"
+    - input: ["interface name","target IPv4 address","excluded subnet IPv4, CIDR notation"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Capture Traffic B/W Local, Class C":
+    - type: ["bash","standalone"]
+    - text: "tcpdump net {INT}.{INT}.{INT}"
+    - input: ["IPv4 address, 1st octet","IPv4 address, 2nd octet","IPv4 address, 3rd octet"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

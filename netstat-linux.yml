@@ -1,0 +1,22 @@
+---
+name: netstat
+description: Prints network connections, routing tables, interface stats, etc.
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Show Active TCP Network Connections":
+    - type: ["bash","standalone"]
+    - text: "netstat -ant"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Show Active TCP/UDP Connections and Listeners (include PID)":
+    - type: ["bash","standalone"]
+    - text: "netstat -tunpl"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

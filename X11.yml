@@ -1,0 +1,18 @@
+---
+name: X11
+description: A windowing system for bitmap displays common on Unix-like operating systems
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Capture Remote X11 Windows and Convert to JPG":
+    - type: ["bash","standalone"]
+    - text:
+      - "xwd -display {IPV4}:0 -root -out /tmp/{STR}.xpm"
+      - "xwud -in /tmp/{STR}.xpm"
+      - "convert /tmp/{STR}.xpm -resize 1280x1024 {STR}.jpg"
+    - input: ["target IPv4 address","XPM file prefix","XPM file prefix (repeat)","XPM file prefix (repeat)","JPG outfile file prefix"]
+    - output: ["STDOUT",{"FILE":{"prefix":[5,".jpg"]}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

@@ -1,0 +1,15 @@
+---
+name: which
+description: Returns the pathnames of the files (or links) which would be executed in the current environment
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Show Location of Executable":
+    - type: ["bash","standalone"]
+    - text: "which {STR}"
+    - input: ["program name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

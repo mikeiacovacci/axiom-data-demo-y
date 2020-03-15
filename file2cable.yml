@@ -1,0 +1,15 @@
+---
+name: file2cable
+description: Sends a file as a raw ethernet frame
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Replay PCAP":
+    - type: ["bash","standalone"]
+    - text: "file2cable -i {STR} -f {FILE}"
+    - input: ["interface name","input PCAP file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

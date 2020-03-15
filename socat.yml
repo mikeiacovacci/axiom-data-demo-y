@@ -1,0 +1,22 @@
+---
+name: socat
+description: Multipurpose relay that establishes two bidirectional byte streams and transfers data between them
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Tunnel IPv6 through IPv4":
+    - type: ["cmd","standalone"]
+    - text: "socat TCP-LISTEN:{INT},reuseaddr,fork TCP6:[2001::]:{INT}"
+    - input: ["local listening TCP port number","remote port number"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Listen and Forward TCP Traffic to Specified Destination IP/Port":
+    - type: ["bash","standalone"]
+    - text: "socat TCP4:LISTEN:{INT} TCP4:{IPV4}:{INT}"
+    - input: ["local listening TCP port","destination IPv4 address","destination TCP port number"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

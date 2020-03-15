@@ -1,0 +1,15 @@
+---
+name: dumpcap
+description: A network traffic dump tool
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Capture Traffic for Specified Number of Seconds":
+    - type: ["bash","standalone"]
+    - text: "dumpcap -I {STR} -a duration:{INT} -w file {FILE}"
+    - input: ["interface name","number of seconds","output PCAP file"]
+    - output: ["STDOUT",{"FILE":{"input":3}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

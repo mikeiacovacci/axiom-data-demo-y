@@ -1,0 +1,15 @@
+---
+name: file
+description: Performs file system, magic, and language tests to determine a file's type
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Determine File Type":
+    - type: ["bash","standalone"]
+    - text: "file {FILE}"
+    - input: ["input file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

@@ -1,0 +1,15 @@
+---
+name: hcitool
+description: Configures Bluetooth connections and sends commands to Bluetooth devices
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Scan for Bluetooth Devices":
+    - type: ["bash","standalone"]
+    - text: "hcitool -i {STR} scan --flush --all"
+    - input: ["bluetooth interface name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

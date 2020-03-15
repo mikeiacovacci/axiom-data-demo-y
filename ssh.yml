@@ -1,0 +1,22 @@
+---
+name: ssh
+description: Secure Shell for logging into remote machines and executing commands
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Establish SSH Connection":
+    - type: ["bash","standalone"]
+    - text: "ssh {STR}@{IPV4} -p {INT}"
+    - input: ["user","target IPv4 address","TCP port number"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Port Forwarding to Attacker IP via Specified TCP Port":
+    - type: ["bash","standalone"]
+    - text: "ssh -R{INT}:127.0.0.1:{INT} {STR}@{IPV4}"
+    - input: ["local listening TCP port number","attacker listening TCP port number","attacker SSH username","attacker IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

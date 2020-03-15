@@ -1,0 +1,22 @@
+---
+name: kill
+description: Sends a signal to a process
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Kill a Process by PID":
+    - type: ["bash","standalone"]
+    - text: "kill {INT}"
+    - input: ["target process PID value"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Kill the Current Session":
+    - type: ["bash","standalone"]
+    - text: "kill -9 $$"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

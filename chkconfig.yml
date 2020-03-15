@@ -1,0 +1,36 @@
+---
+name: chkconfig
+description: Updates and queries runlevel information for system services (RHEL, CentOS, and OEL systems)
+os: Linux
+ptf_module: null
+---
+commands:
+  - "List Existing Services and Run Status":
+    - type: ["bash","standalone"]
+    - text: "chkconfig --list"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Check a Service's Status":
+    - type: ["bash","standalone"]
+    - text: "chkconfig {STR} -list"
+    - input: ["service name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Add Service":
+    - type: ["bash","standalone"]
+    - text: "chkconfig {STR} on"
+    - input: ["service name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Remove Service":
+    - type: ["bash","standalone"]
+    - text: "chkconfig {STR} off"
+    - input: ["service name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

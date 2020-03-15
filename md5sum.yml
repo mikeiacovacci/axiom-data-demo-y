@@ -1,0 +1,15 @@
+---
+name: md5sum
+description: Computes and checks MD5 message digests
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Compute MD5 Hash":
+    - type: ["bash","standalone"]
+    - text: "md5sum -t {FILE}"
+    - input: ["input file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

@@ -1,0 +1,15 @@
+---
+name: sdptool
+description: Performs SDP queries on Bluetooth devices, and controls/interrogates SDP servers
+os: Linux
+ptf_module: null
+---
+commands:
+  - "List Open SDP Services":
+    - type: ["bash","standalone"]
+    - text: "sdptool browse {MAC}"
+    - input: ["BD_ADDR"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

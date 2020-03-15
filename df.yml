@@ -1,0 +1,15 @@
+---
+name: df
+description: Reports file system disk space usage
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Disk Usage (free)":
+    - type: ["bash","standalone"]
+    - text: "df -h"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

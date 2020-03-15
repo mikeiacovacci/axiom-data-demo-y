@@ -1,0 +1,15 @@
+---
+name: sqlmap
+description: Automatic SQL injection and database takeover tool
+os: Linux
+ptf_module: modules/exploitation/sqlmap
+---
+commands:
+  - "POST Request":
+    - type: ["bash","standalone"]
+    - text: "./sqlmap.py -u \"http://{DOMAIN}\" --data=\"{STR}\""
+    - input: ["target domain","URL parameter(s) string"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

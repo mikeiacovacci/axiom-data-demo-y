@@ -1,0 +1,15 @@
+---
+name: nbtstat
+description: Displays protocol statistics and current TCP/IP connections using NBT
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Get Hostname for IP":
+    - type: ["cmd","standalone"]
+    - text: "nbtstat -a {IPV4}"
+    - input: ["target IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

@@ -1,0 +1,15 @@
+---
+name: ping
+description: Sends ICMP ECHO_REQUEST to network hosts
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Ping Sweep (Class C)":
+    - type: ["bash","autonomous"]
+    - text: "for x in {1..254..1};do ping -c 1 {INT}.{INT}.{INT}.$x | grep \"64 b\" | cut -d\" \" -f 4 >> {FILE};done"
+    - input: ["IPv4, 1st octet","IPv4, 2nd octet","IPv4, 3rd octet","output file"]
+    - output: ["STDOUT",{"FILE":{"input":4}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

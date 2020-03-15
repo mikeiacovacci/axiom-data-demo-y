@@ -1,0 +1,29 @@
+---
+name: nmap
+description: Network exploration tool and security/port scanner
+os: Linux
+ptf_module: modules/vulnerability-analysis/nmap
+---
+commands:
+  - "Reverse DNS Lookup, Parsed Output":
+    - type: ["bash","autonomous"]
+    - text: "nmap -R -sL -Pn -dns-servers {IPV4} {IPV4CIDR} | awk '{if(($1\" \"$2\" \"$3)==\"Nmap scan report\")print$5\" \"$6' | sed 's/(//g' | sed 's/)//g' > {FILE}"
+    - input: ["DNS server IPv4 address","target IPv4 range, CIDR notation","output file"]
+    - output: ["STDOUT",{"FILE":{"input":4}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Generate Live Host File":
+    - type: ["bash","autonomous"]
+    - text: "nmap -sP -n -oX {FILE} {IPV4CIDR} | grep \"Nmap\" | cut -d \" \" -f5 > {FILE}"
+    - input: ["output XLM file","target IPv4 network, CIDR notation","output TXT host list file"]
+    - output: ["STDOUT",{"FILE":{"input":1}},{"FILE":{"input":3}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "IDS Test (XMAS Scan with Decoy IPs and Spoofing)":
+    - type: ["bash","standalone"]
+    - text: "for x in {1..10000..1};do nmap -T5 -sX -S {IPV4} -D {STR} --spoof-mac {MAC} -e {STR} -Pn {IPV4};done"
+    - input: ["spoofed IPv4 address","decoy IPv4 addresses, comma-separated/no spaces","spoofed MAC address","interface name","target IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

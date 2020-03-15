@@ -1,0 +1,15 @@
+---
+name: sha1sum
+description: Computes and checks SHA1 message digests
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Compute SHA1 Hash of a File":
+    - type: ["bash","standalone"]
+    - text: "sha1sum {FILE}"
+    - input: ["input file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

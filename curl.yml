@@ -1,0 +1,29 @@
+---
+name: curl
+description: Data transfer tool that supports proxies, FTP, HTTP, SSL, cookies, etc.
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Grab Headers and Spoof User Agent":
+    - type: ["bash","standalone"]
+    - text: "curl -I -X HEAD -A \"Mozilla/5.0 (compatible; MSIE 7.01; Windows NT 5.0)\" {WEBURL}"
+    - input: ["target URL"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Scrape Site After Login":
+    - type: ["bash","standalone"]
+    - text: "curl -u {STR}:{STR} -o {FILE} {WEBURL}"
+    - input: ["username","password","output file","target login URL"]
+    - output: ["STDOUT",{"FILE":{"input":3}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "FTP (via curl)":
+    - type: ["bash","standalone"]
+    - text: "curl ftp://{STR}:{STR}@{DOMAIN}/{STR}"
+    - input: ["username","password","target domain","target FTP directory"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

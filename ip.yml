@@ -1,0 +1,22 @@
+---
+name: ip
+description: Show/manipulates routing, network devices, interfaces and tunnels
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Print Existing VPN Keys":
+    - type: ["bash","standalone"]
+    - text: "ip xfrm state list"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Add Hidden Interface":
+    - type: ["bash","standalone"]
+    - text: "ip addr add {IPV4CIDR} dev {STR}"
+    - input: ["IPv4 address to assign, CIDR notation","interface name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

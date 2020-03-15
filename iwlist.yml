@@ -1,0 +1,15 @@
+---
+name: iwlist
+description: Get more detailed wireless information from a wireless interface
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Scan WiFi":
+    - type: ["bash","standalone"]
+    - text: "iwlist {STR} scan"
+    - input: ["wireless interface name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

@@ -1,0 +1,22 @@
+---
+name: dpkg
+description: Installs, builds, removes, and manage Debian software packages
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Show Installed Packages (Ubuntu)":
+    - type: ["bash","standalone"]
+    - text: "dpkg --get-selections"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Install DEB Package":
+    - type: ["bash","standalone"]
+    - text: "dpkg -I {FILE}"
+    - input: ["DEB input file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

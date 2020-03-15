@@ -1,0 +1,22 @@
+---
+name: touch
+description: Changes file timestamps
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Change File Timestamp to Match Reference File":
+    - type: ["bash","standalone"]
+    - text: "touch -r {FILE} {FILE}"
+    - input: ["reference file","target file to modify"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Set File Timestamp":
+    - type: ["bash","standalone"]
+    - text: "touch -t {STR} {FILE}"
+    - input: ["new timestamp (YYYYMMDDHHSS)","target file to modify"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

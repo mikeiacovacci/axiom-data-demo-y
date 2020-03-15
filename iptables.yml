@@ -1,0 +1,82 @@
+---
+name: iptables
+description: Administration tool for IPv4/IPv6 packet filtering and NAT
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Dump iptables Rules to STDOUT (with counters)":
+    - type: ["bash","standalone"]
+    - text: "iptables-save -c"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Restore iptables Rules":
+    - type: ["bash","standalone"]
+    - text: "iptables-restore {FILE}"
+    - input: ["input iptables dump file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List All iptables Rules with Affected and Line Numbers":
+    - type: ["bash","standalone"]
+    - text: "iptables -L -v --line-numbers"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Flush All iptables Rules":
+    - type: ["bash","standalone"]
+    - text: "iptables -F"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Allow Established Connections on INPUT":
+    - type: ["bash","standalone"]
+    - text: "iptables -A INPUT -i {STR} -m state --state RELATED,ESTABLISHED -j ACCEPT"
+    - input: ["interface name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Delete Inbound Rule by Number":
+    - type: ["bash","standalone"]
+    - text: "iptables -D INPUT {INT}"
+    - input: ["rule number"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Increase Throughput by Turning Off Statefullness":
+    - type: ["bash","standalone"]
+    - text: "iptables -t raw -L -n"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Drop All Packets":
+    - type: ["bash","standalone"]
+    - text: "iptables -P INPUT DROP"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Allow SSH on Port 22 Outbound":
+    - type: ["bash","standalone"]
+    - text:
+      - "iptables -A OUTPUT -o {STR} -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT"
+      - "iptables -A INPUT -i {STR} -p tcp --sport 2 -m state --state ESTABLISHED -j ACCEPT"
+    - input: ["interface name","interface name (repeat)"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Allow ICMP Outbound":
+    - type: ["bash","standalone"]
+    - text:
+      - "iptables -A OUTPUT -i {STR} -p icmp --icmp-type echo-request -j ACCEPT"
+      - "iptables -A INPUT -o {STR} -p icmp --icmp-type echo-reply -j ACCEPT"
+    - input: ["interface name","interface name (repeat)"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

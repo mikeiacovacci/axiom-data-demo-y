@@ -1,0 +1,36 @@
+---
+name: snmpwalk
+description: Retrieve a subtree of management values using SNMP GETNEXT requests
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Find Running Services, Windows (via SNMP)":
+    - type: ["bash","standalone"]
+    - text: "snmpwalk -c public -v1 {IPV4} 1 | grep hrSWRunName | cut -d\" \" -f4"
+    - input: ["target IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Find Open TCP Ports, Windows (via SNMP)":
+    - type: ["bash","standalone"]
+    - text: "snmpwalk -c public -v1 {IPV4} 1 | grep tcpConnState | cut -d\" \" -f6 | sort -u"
+    - input: ["target IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Find Installed Software, Windows (via SNMP)":
+    - type: ["bash","standalone"]
+    - text: "snmpwalk -c public -v1 {IPV4} 1 | grep hrSWInstalledName"
+    - input: ["target IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Find Windows Users (via SNMP)":
+    - type: ["bash","standalone"]
+    - text: "snmpwalk -c public -v1 {IPV4} 1.3 | grep 77.1.2.25 | cut -d\" \" -f4"
+    - input: ["target IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

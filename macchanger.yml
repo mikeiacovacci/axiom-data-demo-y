@@ -1,0 +1,15 @@
+---
+name: macchanger
+description: Shows and manipulates the MAC address for network interfaces
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Change MAC":
+    - type: ["bash","standalone"]
+    - text: "macchanger -m {MAC} {STR}"
+    - input: ["new MAC address","interface name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

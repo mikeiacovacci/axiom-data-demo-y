@@ -1,0 +1,15 @@
+---
+name: route
+description: Manipulates network routing tables
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Show Routing Table":
+    - type: ["cmd","standalone"]
+    - text: "route print"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

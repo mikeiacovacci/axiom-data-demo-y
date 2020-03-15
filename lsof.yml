@@ -1,0 +1,15 @@
+---
+name: lsof
+description: lists open files
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Show Established Connections":
+    - type: ["bash","standalone"]
+    - text: "lsof -i"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

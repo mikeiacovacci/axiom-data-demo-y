@@ -1,0 +1,92 @@
+---
+name: dsquery
+description: Windows Server tool to query Active Directory objects
+os: Windows
+ptf_module: null
+---
+commands:
+  - "List Users on Domain with No Limit on Results":
+    - type: ["cmd","standalone"]
+    - text: "dsquery user -limit 0"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List Groups for Domain":
+    - type: ["cmd","standalone"]
+    - text: "dsquery group \"cn-users, dc={STR}, dc={STR}\""
+    - input: ["domain without TLD","top-level domain"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List Domain Admin Accounts":
+    - type: ["cmd","autonomous"]
+    - text: "dsquery group -name \"domain admins\" | dsget group -members -expand"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List All Groups for a User":
+    - type: ["cmd","autonomous"]
+    - text: "dsquery user -name {STR}* | dsget user -memberof -expand"
+    - input: ["target username"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Get a User's Login ID":
+    - type: ["cmd","autonomous"]
+    - text: "dsquery user -name {STR}* | dsget user -samid"
+    - input: ["target username"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List Accounts Inactive for Specified Number of Weeks":
+    - type: ["cmd","standalone"]
+    - text: "dsquery user -inactive {INT}"
+    - input: ["number of weeks"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List All Operating Systems on Domain":
+    - type: ["cmd","standalone"]
+    - text: "dsquery * \"DC={STR},DC={STR}\" -scope subtree -attr \"cn\" \"operatingSystem\" \"operatingSystemServicePack\" -filter \"(&(objectclass=computer)(objectcategory=computer)(operatingSystem=Windows*))\""
+    - input: ["domain without TLD","top-level domain"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List All Site Names":
+    - type: ["cmd","standalone"]
+    - text: "dsquery site -o rdn -limit 0"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List All Subnets with a Site":
+    - type: ["cmd","standalone"]
+    - text: "dsquery subnet -site {STR} -o rdn"
+    - input: ["site name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List All Servers within a Site":
+    - type: ["cmd","standalone"]
+    - text: "dsquery server -site {STR} -o rdn"
+    - input: ["site name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Find Servers in the Domain":
+    - type: ["cmd","standalone"]
+    - text: "dsquery * domainroot -filter \"(&(objectCategory=Computer)(objectClass=Computer)(operatingSystem=*Server*))\" -limit 0"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List Domain Controllers per Site":
+    - type: ["cmd","standalone"]
+    - text: "dsquery * \"CN=Sites,CN=Configuration,DC=forestRootDomain\" -filter (objectCategory=Server)"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

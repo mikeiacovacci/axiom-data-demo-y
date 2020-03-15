@@ -1,0 +1,15 @@
+---
+name: split
+description: Splits a file into pieces
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Split a File into Chunks by Maximum Size":
+    - type: ["bash","standalone"]
+    - text: "split -b {INT}{STRMENU} {FILE} {STR}"
+    - input: ["maximum chunk size",{"file size unit":["K","M","G","T","P","E","Z","Y"]},"input file","output filename prefix"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

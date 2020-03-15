@@ -1,0 +1,22 @@
+---
+name: ike-scan
+description: Discovers and finderprints IKE hosts (IPsec VPN servers)
+os: Linux
+ptf_module: modules/vulnerability-analysis/ike-scan
+---
+commands:
+  - "Wite PSK to File":
+    - type: ["bash","standalone"]
+    - text: "ike-scan -M -A {IPV4} -P {FILE}"
+    - input: ["target IPv4 address","output file"]
+    - output: ["STDOUT",{"FILE":{"input":2}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "DoS VPN Server":
+    - type: ["bash","standalone"]
+    - text: "ike-scan -A -t 1 --sourceip={IPV4} {IPV4}"
+    - input: ["spoofed IPv4 source address","target IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

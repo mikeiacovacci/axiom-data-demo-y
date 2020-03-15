@@ -1,0 +1,15 @@
+---
+name: script
+description: makes a typescript of everything displayed on your terminal
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Record Shell (CTRL+D to stop)":
+    - type: ["bash","interactive"]
+    - text: "script -a {FILE}"
+    - input: null
+    - output: ["STDOUT",{"FILE":{"input":1}},{"PROMPT":"bash"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

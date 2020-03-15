@@ -1,0 +1,36 @@
+---
+name: service
+description: Runs a System V init script or systemd unit in as predictable an environment as possible
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Run All init Scripts with status Command":
+    - type: ["bash","standalone"]
+    - text: "service --status-all"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Start a Service":
+    - type: ["bash","standalone"]
+    - text: "service {STR} start"
+    - input: ["service name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Stop a Service":
+    - type: ["bash","standalone"]
+    - text: "service {STR} stop"
+    - input: ["service name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Check Status of a Service":
+    - type: ["bash","standalone"]
+    - text: "service {STR} status"
+    - input: ["service name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

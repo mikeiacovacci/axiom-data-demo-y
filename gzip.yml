@@ -1,0 +1,22 @@
+---
+name: gzip
+description: Compresses or expands files
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Compress and Rename a File":
+    - type: ["bash","standalone"]
+    - text: "gzip {FILE}"
+    - input: ["input file"]
+    - output: ["STDOUT",{"FILE":{"prefix":[1,".gz"]}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Decompress .gz File":
+    - type: ["bash","standalone"]
+    - text: "gzip -d {FILE}"
+    - input: ["input .gz file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

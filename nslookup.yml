@@ -1,0 +1,26 @@
+---
+name: nslookup
+description: Displays information to diagnose Domain Name System (DNS) infrastructure
+os: Windows
+ptf_module: null
+---
+commands:
+  - "DNS Zone Xfer":
+    - type: ["cmd","standalone"]
+    - text:
+      - "nslookup"
+      - "set type=any"
+      - "ls -d {STR}"
+      - "exit"
+    - input: ["target domain name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Domain SRV Lookup":
+    - type: ["cmd","standalone"]
+    - text: "nslookup -type=SRV _{STRMENU}._tcp.{DOMAIN}"
+    - input: [{"Record Type":["www","ldap","kerberos","sip"]},"target domain name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

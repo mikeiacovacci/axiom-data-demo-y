@@ -1,0 +1,15 @@
+---
+name: arping
+description: Discovers and probes network hosts by sending link layer frames using MAC address-destined ARP requests
+os: Linux
+ptf_module: null
+---
+commands:
+  - "ARP Scan the Local Network Segment":
+    - type: ["bash","standalone"]
+    - text: "arping -I {STR} -a {INT}"
+    - input: ["interface name","number of ARP requests to send"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

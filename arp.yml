@@ -1,0 +1,15 @@
+---
+name: arp
+description: Displays and modifies the IP-to-Physical address translation tables used by ARP
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Show Known MAC Addresses":
+    - type: ["cmd","standalone"]
+    - text: "arp -a"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

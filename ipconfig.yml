@@ -1,0 +1,22 @@
+---
+name: ipconfig
+description: Displays all current TCP/IP network config values and refreshes DHCP and DNS settings
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Show IP Configuration":
+    - type: ["cmd","standalone"]
+    - text: "ipconfig /all"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Show Local DNS Cache":
+    - type: ["cmd","standalone"]
+    - text: "ipconfig /displaydns"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

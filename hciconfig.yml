@@ -1,0 +1,22 @@
+---
+name: hciconfig
+description: Configures Bluetooth devices
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Turn on Bluetooth Interface":
+    - type: ["bash","standalone"]
+    - text: "hciconfig {STR} up"
+    - input: ["bluetooth interface name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Make Bluetooth Interface Discoverable":
+    - type: ["bash","standalone"]
+    - text: "hciconfig {STR} name \"{STR}\" class 0x520204"
+    - input: ["bluetooth interface name","name to broadcast"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

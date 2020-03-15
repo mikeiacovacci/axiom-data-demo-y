@@ -1,0 +1,15 @@
+---
+name: makecab
+description: Packages existing files into cabinet (.cab) files
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Native Compression":
+    - type: ["cmd","standalone"]
+    - text: "makecab {FILE}"
+    - input: ["file to compress"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

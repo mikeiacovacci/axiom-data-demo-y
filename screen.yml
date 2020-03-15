@@ -1,0 +1,43 @@
+---
+name: screen
+description: A full-screen window manager that multiplexes a physical terminal between several processes (e.g. shells)
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Start New Screen with Name":
+    - type: ["bash","interactive"]
+    - text: "screen -S {STR}"
+    - input: ["screen session name"]
+    - output: ["STDOUT",{"PROMPT":"bash"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Exit Screen":
+    - type: ["bash","interactive"]
+    - text: "exit"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"bash"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List Running Screens":
+    - type: ["bash","standalone"]
+    - text: "screen -ls"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Attach to Screen by Name":
+    - type: ["bash","interactive"]
+    - text: "screen -r {STR}"
+    - input: ["screen session name"]
+    - output: ["STDOUT",{"PROMPT":"bash"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Send Command to Screen by Name":
+    - type: ["bash","standalone"]
+    - text: "screen -S {STR} -X {STR}"
+    - input: ["screen session name","command to send"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

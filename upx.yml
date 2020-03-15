@@ -1,0 +1,15 @@
+---
+name: upx
+description: A portable, extendable, high-performance executable packer for several different executable formats
+os: Linux
+ptf_module: null
+---
+commands:
+  - "UPX Pack Executable":
+    - type: ["bash","standalone"]
+    - text: "upx -9 -o {FILE} {FILE}"
+    - input: ["output file","input file to pack"]
+    - output: ["STDOUT",{"FILE":{"input":1}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

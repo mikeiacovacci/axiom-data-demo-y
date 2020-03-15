@@ -1,0 +1,15 @@
+---
+name: tftp
+description: Use Trivial File Transfer Protocol to transfer files to and from a remote machine
+os: Windows
+ptf_module: null
+---
+commands:
+  - "TFTP File Transfer":
+    - type: ["cmd","standalone"]
+    - text: "tftp -I {IPV4} GET {FULLPATH}"
+    - input: ["target IPv4 address","remote file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

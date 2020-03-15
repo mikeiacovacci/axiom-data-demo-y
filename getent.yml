@@ -1,0 +1,15 @@
+---
+name: getent
+description: Gets entries from Name Service Switch libraries
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Show List of Users":
+    - type: ["bash","standalone"]
+    - text: "getent passwd"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

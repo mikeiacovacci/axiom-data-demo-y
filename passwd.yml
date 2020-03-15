@@ -1,0 +1,18 @@
+---
+name: passwd
+description: Changes passwords for user accounts
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Change User Password":
+    - type: ["bash","standalone"]
+    - text:
+      - "passwd {STR}"
+      - "{STR}"
+      - "{STR}"
+    - input: ["target username","new password","new password (repeat)"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

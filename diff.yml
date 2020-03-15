@@ -1,0 +1,15 @@
+---
+name: diff
+description: Compares files line by line
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Compare Files":
+    - type: ["bash","standalone"]
+    - text: "diff {FILE} {FILE}"
+    - input: ["first file","second file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

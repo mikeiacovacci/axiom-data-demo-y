@@ -1,0 +1,22 @@
+---
+name: chattr
+description: Changes file attributes on a Linux file system
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Set a File's Immutable Bit":
+    - type: ["bash","standalone"]
+    - text: "chattr +i {FILE}"
+    - input: ["target file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Unset a File's Immutable Bit":
+    - type: ["bash","standalone"]
+    - text: "chattr -i {FILE}"
+    - input: ["target file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

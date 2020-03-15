@@ -1,0 +1,15 @@
+---
+name: gcc
+description: GNU project C and C++ compiler
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Compile C or C++":
+    - type: ["bash","standalone"]
+    - text: "gcc -o {FILE} {FILE}"
+    - input: ["compiled output file","C/C++ source code file"]
+    - output: ["STDOUT",{"FILE":{"input":1}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

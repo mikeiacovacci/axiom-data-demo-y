@@ -1,0 +1,36 @@
+---
+name: aircrack-ng
+description: A suite of tools to assess wireless security by monitoring, testing, and attacking/cracking WiFi networks
+os: Linux
+ptf_module: modules/wireless/aircrackng
+---
+commands:
+  - "Monitor Wireless Interface":
+    - type: ["bash","standalone"]
+    - text: "airdump-ng {STR}"
+    - input: ["monitor interface name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Capture Wireless Traffic":
+    - type: ["bash","standalone"]
+    - text: "airdump-ng -c {INT} --bssid {STR} -w {FILE} {STR}"
+    - input: ["channel number","target network name","output file","wireless interface name"]
+    - output: ["STDOUT",{"FILE":{"input":3}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Force Wireless Client DEAUTH":
+    - type: ["bash","standalone"]
+    - text: "aireplay-ng -0 {INT} -a {STR} -c {INT} {STR}"
+    - input: ["number of frames to send","target network name","channel number","wireless interface name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Brute Force WPA-PSK Handshake":
+    - type: ["bash","standalone"]
+    - text: "aircrack-ng -w {FILE} {FILE}"
+    - input: ["wordlist file","PCAP file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

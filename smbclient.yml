@@ -1,0 +1,30 @@
+---
+name: smbclient
+description: An ftp-like client to access SMB/CIFS resources on servers
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Mount Windows Share":
+    - type: ["bash","interactive"]
+    - text:
+      - "smbclient -U {STR} \\\\\\\\{IPV4}\\\\{STR}"
+      - "{STR}"
+    - input: ["target username","target IPv4 address","target share name","password"]
+    - output: ["STDOUT",{"PROMPT":"smbclient"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Print Working Directory":
+    - type: ["smbclient","interactive"]
+    - text: "pwd"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"smbclient"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Show Connection":
+    - type: ["smbclient","interactive"]
+    - text: "showconnect"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"smbclient"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+...

@@ -1,0 +1,36 @@
+---
+name: ifconfig
+description: Configures the kernel-resident network interfaces
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Set IP Address and Netmask":
+    - type: ["bash","standalone"]
+    - text: "ifconfig {STR} {IPV4CIDR}"
+    - input: ["interface name","IP address with netmask, CIDR notation"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Set Virtual Interface":
+    - type: ["bash","standalone"]
+    - text: "ifconfig {STR}:1 {IPV4CIDR}"
+    - input: ["interface name","IP address with netmask, CIDR notation"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Change MTU Size":
+    - type: ["bash","standalone"]
+    - text: "ifconfig {STR} mtu {INT}"
+    - input: ["interface name","MTU size in bytes"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Change MAC":
+    - type: ["bash","standalone"]
+    - text: "ifconfig {STR} hw ether {MAC}"
+    - input: ["interface name","new MAC address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

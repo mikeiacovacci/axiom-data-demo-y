@@ -1,0 +1,50 @@
+---
+name: tar
+description: Archiving utility
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Create .tar from Files":
+    - type: ["bash","standalone"]
+    - text: "tar cf {STR}.tar {STR}"
+    - input: ["output TAR filename prefix","list of files, space-delimited"]
+    - output: ["STDOUT",{"FILE":{"prefix":[1,".tar"]}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Extract .tar":
+    - type: ["bash","standalone"]
+    - text: "tar xf {FILE}"
+    - input: ["input TAR file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Create .tar.gz":
+    - type: ["bash","standalone"]
+    - text: "tar czf {STR}.tar.gz {STR}"
+    - input: ["output filename prefix","list of files, space-delimited"]
+    - output: ["STDOUT",{"FILE":{"prefix":[1,".tar.gz"]}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Extract .tar.gz":
+    - type: ["bash","standalone"]
+    - text: "tar xzf {FILE}"
+    - input: ["input .tar.gz file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Create .tar.bz2":
+    - type: ["bash","standalone"]
+    - text: "tar cjf {STR}.tar.bz2 {STR}"
+    - input: ["output filename prefix","list of files, space-delimited"]
+    - output: ["STDOUT",{"FILE":{"prefix":[1,".tar.bz2"]}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Extract .tar.bz2":
+    - type: ["bash","standalone"]
+    - text: "tar xjf {FILE}"
+    - input: ["input .tar.bz2 file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

@@ -1,0 +1,15 @@
+---
+name: tcprelay
+description: Replays network traffic stored in PCAP files
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Replay Packets (Fuzz or DoS)":
+    - type: ["bash","standalone"]
+    - text: "tcprelay --topspeed --loop=0 --intf={STR} {FILE} --mbps={INTMENU}"
+    - input: ["interface name","input PCAP file",{"speed (mbps)":["10","100","1000"]}]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

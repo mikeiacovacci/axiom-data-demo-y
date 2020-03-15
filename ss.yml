@@ -1,0 +1,15 @@
+---
+name: ss
+description: Dumps socket statistics
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Show Network Connections":
+    - type: ["bash","standalone"]
+    - text: "ss -tp"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

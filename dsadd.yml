@@ -1,0 +1,15 @@
+---
+name: dsadd
+description: Windows Server tool to create new Active Directory objects
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Add Domain Admin User":
+    - type: ["cmd","standalone"]
+    - text: "dsadd user \"CN={STR},CN=Users,DC={STR},DC={STR}\" -samid {STR} -pwd {STR} -display \"{STR}\" -pwdneverexpires yes -memberof \"CN=Domain Admins,CN=Users,DC={STR},DC={STR}\""
+    - input: ["username","domain without TLD","top-level domain","username (repeat)","password","display name","domain without TLD (repeat)","top-level domain (repeat)"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

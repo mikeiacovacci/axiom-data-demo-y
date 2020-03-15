@@ -1,0 +1,15 @@
+---
+name: id
+description: Prints real and effective user and group IDs
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Show Current Username":
+    - type: ["bash","standalone"]
+    - text: "id"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

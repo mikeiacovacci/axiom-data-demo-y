@@ -1,0 +1,15 @@
+---
+name: dsrm
+description: Windows Server tool to delete Active Directory objects
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Delete Domain User":
+    - type: ["cmd","standalone"]
+    - text: "dsrm -subtree -noprompt \"CN={STR},CN=Users,DC={STR},DC={STR}\""
+    - input: ["target username","domain without TLD","top-level domain"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

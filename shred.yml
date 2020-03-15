@@ -1,0 +1,15 @@
+---
+name: shred
+description: Overwrites a file to hide its contents and optionally deletes it
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Overwrite and Delete a File":
+    - type: ["bash","standalone"]
+    - text: "shred -f -u {FILE}"
+    - input: ["target file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

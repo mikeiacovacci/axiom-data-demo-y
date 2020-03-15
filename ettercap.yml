@@ -1,0 +1,22 @@
+---
+name: Ettercap
+description: A suite for man in the middle attacks
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Man-in-the-Middle Entire Subnet with Applied Filter":
+    - type: ["cmd","standalone"]
+    - text: "ettercap.exe -T -M arp -F {STR}"
+    - input: ["filter"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Switch Flood":
+    - type: ["cmd","standalone"]
+    - text: "ettercap -TP rand_flood"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

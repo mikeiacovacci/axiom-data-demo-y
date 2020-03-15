@@ -1,0 +1,22 @@
+---
+name: history
+description: GNU History Library
+os: Linux
+ptf_module: null
+---
+commands:
+  - "View User's Command History":
+    - type: ["bash","standalone"]
+    - text: "history"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Clear Current Session History":
+    - type: ["bash","standalone"]
+    - text: "history -c"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

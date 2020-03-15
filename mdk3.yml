@@ -1,0 +1,22 @@
+---
+name: mdk3
+description: Exploits common IEEE 802.11 protocol weaknesses
+os: Linux
+ptf_module: modules/wireless/mdk3
+---
+commands:
+  - "Wireless AUTH Flood":
+    - type: ["bash","standalone"]
+    - text: "mdk3 {INT} a -a {STR}"
+    - input: ["number of frames to send","target network name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Wireless Beacon Flood":
+    - type: ["bash","standalone"]
+    - text: "mdk3 {INT} b -c {INT}"
+    - input: ["number of frames to send","target channel number"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

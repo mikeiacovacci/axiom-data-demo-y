@@ -1,0 +1,29 @@
+---
+name: netstat
+description: Displays protocol statistics and current TCP/IP network connections
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Show Open Connections":
+    - type: ["cmd","standalone"]
+    - text: "netstat -ano"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Netstat Loop":
+    - type: ["cmd","standalone"]
+    - text: "netstat -anop tcp 1"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Show Listening Ports":
+    - type: ["cmd","autonomous"]
+    - text: "netstat -an | findstr LISTENING"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

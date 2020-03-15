@@ -1,0 +1,15 @@
+---
+name: w
+description: Shows who is logged on and what they are doing
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Show Logged On Users":
+    - type: ["bash","standalone"]
+    - text: "w"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

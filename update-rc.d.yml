@@ -1,0 +1,22 @@
+---
+name: update-rc.d
+description: Install and Removes System-V style init script links
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Remove a Service Startup Command":
+    - type: ["bash","standalone"]
+    - text: "update-rc.d -f {STR} remove"
+    - input: ["service name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Add a Startup Service":
+    - type: ["bash","standalone"]
+    - text: "update-rc.d {STR} defaults"
+    - input: ["service name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

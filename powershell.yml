@@ -1,0 +1,169 @@
+---
+name: powershell
+description: A task automation and configuration management framework, command-line shell, and scripting language
+os: Windows
+ptf_module: null
+---
+commands:
+  - "Display File Contents":
+    - type: ["powershell","standalone"]
+    - text: "get-content {FILE}"
+    - input: ["input file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Display Services":
+    - type: ["powershell","standalone"]
+    - text: "get-service"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Display Services (via WMI)":
+    - type: ["powershell","standalone"]
+    - text: "get-wmiobject -class win32_service"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Display PowerShell Version":
+    - type: ["powershell","standalone"]
+    - text: "$PSVersionTable"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Run PowerShell 2.0":
+    - type: ["cmd","interactive"]
+    - text: "powershell.exe -version 2.0"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"powershell"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Launch PowerShell":
+    - type: ["cmd","interactive"]
+    - text: "powershell.exe"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"powershell"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Show Number of Services":
+    - type: ["powershell","autonomous"]
+    - text: "get-service | measure-object"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Show List of PSDrives":
+    - type: ["powershell","standalone"]
+    - text: "get-psdrive"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List Process Names":
+    - type: ["powershell","autonomous"]
+    - text: "get-process | select -expandproperty name"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List Available WMI Network Commands":
+    - type: ["powershell","autonomous"]
+    - text: "get-wmiobject -list *network"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "DNS Lookup (via PowerShell)":
+    - type: ["powershell","standalone"]
+    - text: "[Net.DNS]::GetHostEntry(\"{DOMAIN}\")"
+    - input: ["target domain"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Clear Security and Application Event Log":
+    - type: ["powershell","standalone"]
+    - text: "Clear-EventLog -logname Application, Security -computername {STR}"
+    - input: ["target computer name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Export OS Info into CSV File":
+    - type: ["powershell","autonomous"]
+    - text: "get-wmiobject -class win32_operatingsystem | select -property * | export-csv {FILE}"
+    - input: ["output CSV file"]
+    - output: ["STDOUT",{"FILE":{"input":1}}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List Running Services":
+    - type: ["powershell","autonomous"]
+    - text: "Get-Service | where-object {$_.status -eq \"Running\"}"
+    - input: null
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Persistent PSDrive to Remote File Share":
+    - type: ["powershell","standalone"]
+    - text: "NewPSDrive -Persist -PSProvider FileSystem -Root \\\\{IPV4}\\{STR} -Name i"
+    - input: ["remote IPv4 address","share name"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List Log Files Modified Since Specified Date":
+    - type: ["powershell","autonomous"]
+    - text: "Get-ChildItem -Path c:\\ -Force -Recurse -Filter *.log -ErrorAction SilentlyContinue | where {$_.LastWriteTime -gt \"{STR}\"}"
+    - input: ["date (YYYY-MM-DD)"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "File Download over HTTP":
+    - type: ["powershell","standalone"]
+    - text: "(new-object system.net.webclient).downloadFile(\"{HTTPURL}\",\"{FILE}\")"
+    - input: ["target file URL","output file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "TCP Port Scanner (via PowerShell)":
+    - type: ["powershell","standalone"]
+    - text: "$ports=({STR});$ip=\"{IPV4}\";foreach ($port in $ports){try{$socket=New-object System.Net.Sockets.TCPClient($ip,$port);}catch{};if ($socket -eq $NULL){echo $ip\":\"$port\" - Closed\";}else{echo $ip\":\"$port\" - Open\";$socket = $NULL;}}"
+    - input: ["TCP port list (comma-separated)","target IPv4 address"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Ping with Specified Timeout":
+    - type: ["powershell","standalone"]
+    - text: "$ping = New-Object System.Net.Networkinformation.ping;$ping.Send(\"{IPV4}\",{INT})"
+    - input: ["target IPv4 address","timeout (milliseconds)"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Basic Authentication Popup":
+    - type: ["powershell","standalone"]
+    - text: "powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass $Host.UI.PromptForCredential(\"{STR}\",\"{STR}\",\"{STR}\",\"{STR}\")"
+    - input: ["title","message","target username","target domain"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "PowerShell Runas":
+    - type: ["powershell","standalone"]
+    - text: "$pw = convertto-securestring -string \"{STR}\" -asplaintext -force; $pp = new-object -typename System.Management.Automation.PSCredential -argumentlist \"{STR}\\{STR}\", $pw; Start-Process powershell -Credential $pp -ArgumentList '-noprofile -command &{Start-Process {STR} -verb runas}'"
+    - input: ["password","domain","target user","executable file"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "List Hostname and IP for All Domain Computers":
+    - type: ["powershell","autonomous"]
+    - text: "Get-WmiObject -ComputerName {IPV4} -Namespace root\\microsoftDNS -Class MicrosoftDNS_ResourceRecord -Filter \"domainname='{STR}'\" | select textrepresentation"
+    - input: ["domain controller IPv4 address","domain"]
+    - output: ["STDOUT"]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+  - "Exit PowerShell":
+    - type: ["powershell","interactive"]
+    - text: "exit"
+    - input: null
+    - output: ["STDOUT",{"PROMPT":"cmd"}]
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...

